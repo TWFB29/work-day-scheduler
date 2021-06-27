@@ -20,16 +20,11 @@ $("#currentDay").text(`${time.format('MMMM Do YYYY')}`);
 
 // check local storage for tasks
 
-if(localStorage.getItem("localSavedTasks"))  {
-
-    taskArray = JSon.parse(localStorage.getItem("localSavedTasks"));
-
+if (localStorage.getItem("localHourlyTasks")) {
+    taskArray = JSON.parse(localStorage.getItem("localHourlyTasks"));
 } else {
-
-    timeArray = []
-
+    taskArray = [];
 };
-
  
 
 // function to link time and task rows for color coding using classes
@@ -106,49 +101,35 @@ function updateLocalStorage() {
     
     
     var txt = document.getElementById('tsk' + btnIndex).value
- 
-    alert(txt)
-
-    if (txt != "") {
-
-        txt = {
-
-            time: $(".hour")[btnIndex].textContent.trim(),
-
-            task: txt[btnIndex].value
-
-        };
-
- 
-
-        localStorage.setItem("localHourlyTasks", JSON.stringify(taskArray));
-
-        setTimeout(function () {
-
-            $('.alert-success').addClass('alert-animation');
-
-            $('.alert-success').text(`Successfully saved task at ${$(".hour")[btnIndex].textContent.trim()}!`);
-
-        }, 100);
-
+    var tg
+    if (btnIndex < 9 || btnIndex === 12) {
+       tg = "PM";
+    } else {
+        tg = "AM";
     };
+    if (txt != "") {
+        
+       const tx = {
+           task: txt, 
+           
+           time: btnIndex + tg,
+        }
+
+
+        localStorage.setItem("localHourlyTasks", JSON.stringify(tx));
+        
+    };
+   
 
 };
 
 
-function writeCurrentTasks() {
+//function writeCurrentTasks() {
 
-    $.each(taskArray, function (i) {
+  // var allTasks = [""];
+    //allTasks += tx;
 
-        if (taskArray[i]) {
-
-            task[i].value = taskArray[i].task;
-
-        };
-
-    });
-
-};
+//};
 
 setInterval(function () {
 
@@ -170,36 +151,7 @@ setInterval(function () {
 
 updateCurrentScheduleTime();
 
-writeCurrentTasks();
+
 
 $("button").click(updateLocalStorage);
 
-// // Declares a 'list' variable that holds the parsed to-do items retrieved from 'localStorage'
-
-// // If there is nothing in 'localStorage', sets the 'list' to an empty array
-
-// var list = JSON.parse(localStorage.getItem('todolist')) || [];
-
- 
-
-// // Renders our to-dos to the page
-
-// function renderTodos(list) {
-
-//     // Empties out the html
-
-//     $('#to-dos').empty();
-
- 
-
-//     // Iterates over the 'list'
-
-//     for (var i = 0; i < list.length; i++) {
-
-//         // Creates a new variable 'toDoItem' that will hold a "<p>" tag
-
-//         // Sets the `list` item's value as text of this <p> element
-
-//         var toDoItem = $('<p>');
-
-//         toDoItem.text(list[i]);
