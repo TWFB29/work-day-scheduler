@@ -105,12 +105,12 @@ function updateLocalStorage() {
     let btnIndex = Number($(this).attr('id'));
 
     $('.alert-success').removeClass('alert-animation');
-
  
+    console.log(task[btnIndex].value);
 
     if (task[btnIndex].value.trim() != "") {
 
-        taskArray[btnIndex] = {
+        task[btnIndex] = {
 
             time: $(".hour")[btnIndex].textContent.trim(),
 
