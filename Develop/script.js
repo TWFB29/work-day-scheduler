@@ -103,18 +103,19 @@ function updateLocalStorage() {
     event.preventDefault();
 
     let btnIndex = Number($(this).attr('id'));
-
-    $('.alert-success').removeClass('alert-animation');
+    
+    
+    var txt = document.getElementById('tsk' + btnIndex).value
  
-    console.log(task[btnIndex].value);
+    alert(txt)
 
-    if (task[btnIndex].value.trim() != "") {
+    if (txt != "") {
 
-        task[btnIndex] = {
+        txt = {
 
             time: $(".hour")[btnIndex].textContent.trim(),
 
-            task: task[btnIndex].value
+            task: txt[btnIndex].value
 
         };
 
@@ -133,6 +134,7 @@ function updateLocalStorage() {
     };
 
 };
+
 
 function writeCurrentTasks() {
 
