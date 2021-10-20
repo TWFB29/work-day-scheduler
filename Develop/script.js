@@ -3,10 +3,16 @@ $("#currentDay").html(time);
 var task = $("textarea");
 var taskColor= $(".col-8");
 var currentHour;
-var taskArray;
+var taskArray = [];
 
-if (localStorage.getItem("localHourlyTasks")) {
-    taskArray = JSON.parse(localStorage.getItem("localHourlyTasks"));
-} else {
-    taskArray = [];
-};
+function setColor (){
+    for (i = 0; i <= 8; i++) {
+        const timeSlot = "tsk" + i;
+        console.log(timeSlot);
+    }
+}
+// if (localStorage.getItem("localHourlyTasks")) {
+//     taskArray = JSON.parse(localStorage.getItem("localHourlyTasks"));
+// } else {
+//     taskArray = [];
+// };
