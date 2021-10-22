@@ -54,7 +54,7 @@ function localStorageSave(){
     localStorage.setItem("storedJobs", JSON.stringify(taskArray));
 };
 
-const help
+
 // function setColor (){
 //     for (i = 0; i <= 8; i++) {
 //         const textAreas = $("#tsk" + i);
